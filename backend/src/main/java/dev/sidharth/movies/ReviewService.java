@@ -27,4 +27,8 @@ public class ReviewService {
         review.setImdbId(imdbId);
         return reviewRepository.save(review);
     }
+
+    public List<Review> getReviewHistory(String imdbId) {
+        return reviewRepository.findByImdbId(imdbId);
+    }
 }

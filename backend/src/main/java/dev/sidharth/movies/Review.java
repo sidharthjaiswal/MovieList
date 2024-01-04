@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Document(collection = "reviews")
 @Data
@@ -16,18 +17,21 @@ import java.util.Date;
 public class Review {
     @Id
     private ObjectId id;
+
     private String imdbId;
-    private Date date;
+
+    private String date;
+
     private String body;
 
     /**
      * @param body
      * @param imdbId
-     *
      */
     public Review(String body, String imdbId) {
         this.imdbId = imdbId;
         this.body = body;
-        this.date = new Date();
+        this.date = LocalDate.now().toString();
+
     }
 }
